@@ -70,6 +70,19 @@ provider — state management across screens
 flutter_local_notifications — price drop push alerts
 share_plus — share product comparisons
 url_launcher — open store links (Daraz, Carrefour, etc.)
+
+To Run:
+1. open flutter terminal and run flutter pub get
+2. then flutter run
+3. flutter build apk --release
+
+
+
+
+
+
+
+
 connectivity_plus — detect offline mode gracefully
 cached_network_image — cache store logos/product images
 intl — format PKR currency and dates correctly
