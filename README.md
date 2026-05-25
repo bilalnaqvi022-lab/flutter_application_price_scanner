@@ -1,3 +1,13 @@
+
+# 🔍 PriceLens — Local Market Price Comparison App
+> **Scan once. Compare everywhere. Never overpay again.**
+> A Flutter mobile app that scans barcodes/QR codes and instantly compares prices across local shops and online marketplaces in Pakistan.
+
+[![Flutter](https://img.shields.io/badge/Flutter-3.0%2B-02569B?style=flat-square&logo=flutter)](https://flutter.dev/)
+[![Dart](https://img.shields.io/badge/Dart-3.0%2B-0175C2?style=flat-square&logo=dart)](https://dart.dev/)
+[![SQLite](https://img.shields.io/badge/SQLite-Local%20DB-003B57?style=flat-square&logo=sqlite)](https://www.sqlite.org/)
+[![License](https://img.shields.io/badge/License-MIT-green?style=flat-square)](LICENSE)
+
 **Screenshots**
 <p align="center">
   <img src="https://github.com/user-attachments/assets/036fb155-bffe-4722-b89b-1449567a5375" width="220" hspace="10"/>
@@ -18,73 +28,230 @@
 </p>
 
 
-PriceLens– Local Market Price Comparison App
-
-The Local Market Price Comparison App is a mobile application that allows users to 
-compare prices of products across local shops and online stores. By scanning product 
-barcodes or QR codes, users can instantly see price differences and find the cheapest 
-option available. The app integrates with local shop databases, online marketplaces, and 
-APIs to provide real-time price comparisons, helping consumers save money and make 
-informed purchasing decisions.
-
-Functional Requirements
-• User Input: Scan barcodes or QR codes of products via the app camera.
-• Price Comparison: Fetch prices from local shop databases and online 
-marketplaces.
-• Cheapest Option Alert: Highlight the cheapest price and suggest purchase location.
-• History Section: Save scanned products for future reference.
-• Notifications: Optional alerts when a product’s price drops.
-• User-Friendly Interface: Simple navigation for all age groups.
-Non-Functional Requirements
-• Performance: Price results should appear within 2–5 seconds.
-• Accuracy: Prices must be up-to-date and verified via APIs or shop inputs.
-• Usability: Intuitive interface suitable for everyday users.
-• Scalability: Should support multiple users and large product databases.
-• Security & Privacy: User data encrypted; personal data not shared without 
-consent.
-• Reliability: App must function consistently without crashes.
-• Maintainability: Databases and APIs should be updatable as markets change.
-4 Full Screens via Bottom Navigation:
-
-🏠 Home — Hero banner, stat cards (scans today, money saved, live stores), quick action grid, recent scans, and top savings tips
-📷 Scanner — Animated scan viewport with moving laser line, corner bracket overlay, grid background, loading state with "Fetching prices…", and a manual barcode entry dialog
-📊 Results — Product header, "Best Price" champion banner with savings callout, animated price range bar, ranked store list with online/local badges & ratings, and Share / Set Alert buttons
-🔔 Notifications — Toggle switches for Price Drops, Weekly Report & Flash Deals, plus a styled notification feed with unread indicators
-
-Core Functionality
-
-mobile_scanner — barcode/QR scanning via device camera
-http — API calls to fetch live prices from stores
-shared_preferences + sqflite — persist scan history locally
-
-UI & Experience
-
-google_fonts + Poppins font family — polished typography
-flutter_animate — smooth animations and transitions
-lottie — JSON-based animations for loading/success states
-shimmer — skeleton loading placeholders while prices fetch
-
-App Features
-
-provider — state management across screens
-flutter_local_notifications — price drop push alerts
-share_plus — share product comparisons
-url_launcher — open store links (Daraz, Carrefour, etc.)
-
-To Run:
-1. open flutter terminal and run flutter pub get
-2. then flutter run
-3. flutter build apk --release
 
 
+---
 
+## 📖 Overview
 
+PriceLens lets consumers scan any product barcode or QR code and instantly see price comparisons across local shops and online stores like Daraz and Carrefour. It highlights the cheapest option, tracks scan history, and sends push alerts when prices drop — all designed to help everyday users in Pakistan make smarter purchasing decisions.
 
+---
 
+## ✨ Features
 
+| Feature | Description |
+|---------|-------------|
+| 📷 **Barcode / QR Scanning** | Scan product codes via device camera for instant lookup |
+| 💰 **Live Price Comparison** | Fetch real-time prices from local shop databases and online marketplaces |
+| 🏆 **Cheapest Option Alert** | Highlights the best deal and tells you exactly where to buy |
+| 🕓 **Scan History** | Saves previously scanned products locally for quick re-reference |
+| 🔔 **Price Drop Notifications** | Optional push alerts when a tracked product's price falls |
+| 🌐 **Store Links** | Tap to open product pages on Daraz, Carrefour, and more |
+| 📊 **Savings Analytics** | Tracks money saved, scans today, and live stores monitored |
+| 📤 **Share Comparisons** | Share price results with friends or family via any platform |
+| 📴 **Offline Mode** | Graceful handling when no internet connection is detected |
+| 🌓 **Polished UI** | Poppins typography, shimmer skeletons, Lottie animations, and smooth transitions |
 
-connectivity_plus — detect offline mode gracefully
-cached_network_image — cache store logos/product images
-intl — format PKR currency and dates correctly
+---
 
+## 📱 Screens
+
+### 🏠 Home
+- Hero banner with app branding
+- Stat cards — scans today, money saved, live stores tracked
+- Quick action grid for fast navigation
+- Recent scans list
+- Top savings tips section
+
+### 📷 Scanner
+- Animated scan viewport with moving laser line
+- Corner bracket overlay and grid background
+- Loading state with "Fetching prices…" indicator
+- Manual barcode entry dialog for typed input
+
+### 📊 Results
+- Product header with name and image
+- **Best Price** champion banner with savings callout
+- Animated price range bar (lowest → highest)
+- Ranked store list with online / local badges and ratings
+- **Share** and **Set Alert** action buttons
+
+### 🔔 Notifications
+- Toggle switches for Price Drops, Weekly Report, and Flash Deals
+- Styled notification feed with unread indicators
+
+---
+
+## 🏗️ Project Structure
+
+```
+lib/
+├── config/
+│   └── api_config.dart               # Base URLs, API keys, environment vars
+│
+├── models/
+│   ├── product_model.dart            # Product and barcode data
+│   ├── price_result_model.dart       # Store + price comparison result
+│   ├── scan_history_model.dart       # Local scan history entry
+│   └── notification_model.dart       # Price alert and feed entries
+│
+├── providers/
+│   ├── scanner_provider.dart         # Scan state and barcode handling
+│   ├── price_provider.dart           # Price fetch and comparison logic
+│   ├── history_provider.dart         # Local scan history management
+│   └── notification_provider.dart    # Alert toggle and notification state
+│
+├── screens/
+│   ├── main_screen.dart              # Bottom navigation shell
+│   ├── home/
+│   │   └── home_screen.dart
+│   ├── scanner/
+│   │   └── scanner_screen.dart
+│   ├── results/
+│   │   └── results_screen.dart
+│   └── notifications/
+│       └── notifications_screen.dart
+│
+├── services/
+│   ├── price_service.dart            # API calls to fetch live store prices
+│   ├── database_service.dart         # sqflite operations for scan history
+│   └── notification_service.dart     # flutter_local_notifications setup
+│
+├── widgets/
+│   ├── stat_card.dart
+│   ├── price_bar.dart                # Animated price range bar
+│   ├── store_tile.dart               # Ranked store list item
+│   ├── scan_overlay.dart             # Laser line + corner bracket viewport
+│   └── shimmer_loader.dart           # Skeleton placeholder while fetching
+│
+├── theme/
+│   └── app_theme.dart                # Colors, typography, Poppins font setup
+│
+└── main.dart
+```
+
+---
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+- Flutter SDK `>= 3.0.0`
+- Dart SDK `>= 3.0.0`
+- A physical device or emulator with camera access
+
+### Install & Run
+
+```bash
+# 1. Clone the repository
+git clone https://github.com/your-username/pricelens.git
+cd pricelens
+
+# 2. Install dependencies
+flutter pub get
+
+# 3. Run on connected device or emulator
+flutter run
+```
+
+### Build Release APK
+
+```bash
+flutter build apk --release
+```
+
+---
+
+## 📦 Dependencies
+
+### Core Functionality
+
+| Package | Purpose |
+|---------|---------|
+| `mobile_scanner` | Barcode and QR code scanning via device camera |
+| `http` | REST API calls to fetch live prices from stores |
+| `shared_preferences` | Persist lightweight settings and preferences |
+| `sqflite` | Local SQLite database for scan history |
+
+### UI & Experience
+
+| Package | Purpose |
+|---------|---------|
+| `google_fonts` | Poppins font family for polished typography |
+| `flutter_animate` | Smooth screen transitions and micro-animations |
+| `lottie` | JSON-based animations for loading and success states |
+| `shimmer` | Skeleton loading placeholders while prices are fetching |
+
+### App Features
+
+| Package | Purpose |
+|---------|---------|
+| `provider` | State management across all screens |
+| `flutter_local_notifications` | Price drop push alerts |
+| `share_plus` | Share product comparisons to any platform |
+| `url_launcher` | Open store links (Daraz, Carrefour, etc.) |
+| `connectivity_plus` | Detect and handle offline mode gracefully |
+| `cached_network_image` | Cache store logos and product images |
+| `intl` | Format PKR currency and dates correctly |
+
+---
+
+## ⚙️ Non-Functional Requirements
+
+| Requirement | Target |
+|-------------|--------|
+| ⚡ Performance | Price results appear within **2–5 seconds** |
+| ✅ Accuracy | Prices verified via live APIs and shop inputs |
+| 👥 Usability | Intuitive interface suitable for all age groups |
+| 📈 Scalability | Supports multiple concurrent users and large product databases |
+| 🔒 Security | User data encrypted; no personal data shared without consent |
+| 🛡️ Reliability | Consistent operation with no unexpected crashes |
+| 🔧 Maintainability | APIs and databases updatable as markets change |
+
+---
+
+## 💱 Currency & Localisation
+
+All prices are displayed in **PKR (Pakistani Rupees)** formatted via the `intl` package.
+Store integrations include local Pakistani retailers and online marketplaces such as **Daraz** and **Carrefour**.
+
+---
+
+## 🔔 Notification Types
+
+| Alert | Description |
+|-------|-------------|
+| 📉 Price Drop | Triggered when a tracked product's price falls |
+| 📋 Weekly Report | Summary of savings and top deals from the past week |
+| ⚡ Flash Deals | Time-limited offers from connected stores |
+
+---
+
+## 🛠️ Troubleshooting
+
+| Issue | Fix |
+|-------|-----|
+| Camera not working | Grant camera permission in device settings |
+| Prices not loading | Check internet connection; verify API keys in `api_config.dart` |
+| Scan history missing | Ensure `sqflite` database initialised on first run |
+| Notifications not showing | Enable notification permissions in device settings |
+| Offline with no feedback | `connectivity_plus` should show an offline banner — check provider setup |
+| PKR not formatting | Confirm `intl` locale is initialised in `main.dart` |
+
+---
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create a feature branch: `git checkout -b feature/my-feature`
+3. Commit your changes: `git commit -m "Add my feature"`
+4. Push to the branch: `git push origin feature/my-feature`
+5. Open a Pull Request
+
+---
+
+## 📄 License
+
+This project is licensed under the MIT License. See [LICENSE](LICENSE) for details.
 
